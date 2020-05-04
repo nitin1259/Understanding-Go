@@ -286,3 +286,138 @@ Here’s what those types are used for:
 | float64 | A floating-point number. Holds numbers with a fractional part. (The 64 in the type name is because 64 bits of data are used to hold the number. This means that float64 values can be fairly, but not infinitely, precise before being rounded off.) |
 | bool    | A Boolean value. Can only be true or false.                                                                                                                                                                                                          |
 | string  | A string. A series of data that usually represents text characters.                                                                                                                                                                                  |
+
+Declaring variables
+In Go, a `variable` is a piece of storage containing a value. You can give a variable a name by using a `variable declaration`. Just use the var keyword followed by the desired name and the type of values the variable will hold.
+
+![Play Goloang](./../images/chapter1/f0016-01.png)
+
+Once you declare a variable, you can assign any value of that type to it with = (that’s a single equals sign):
+
+```go
+    quantity = 2
+    customerName = "Damon Cole"
+```
+
+You can assign values to multiple variables in the same statement. Just place multiple variable names on the left side of the =, and the same number of values on the right side, separated with commas.
+
+![Play Goloang](./../images/chapter1/f0016-02.png)
+
+Once you’ve assigned values to variables, you can use them in any context where you would use the original values:
+
+![Play Goloang](./../images/chapter1/f0016-03.png)
+If you know beforehand what a variable’s value will be, you can declare variables and assign them values on the same line:
+
+![Play Goloang](./../images/chapter1/f0017-01.png)
+You can assign new values to existing variables, but they need to be values of the same type. Go’s static typing ensures you don’t accidentally assign the wrong kind of value to a variable.
+
+![Play Goloang](./../images/chapter1/f0017-02.png)
+If you assign a value to a variable at the same time as you declare it, you can usually omit the variable type from the declaration. The type of the value assigned to the variable will be used as the type of that variable.
+
+![Play Goloang](./../images/chapter1/f0017-03.png)
+
+## Zero values
+
+If you declare a variable without assigning it a value, that variable will contain the zero value for its type. For numeric types, the zero value is actually 0:
+
+![Play Goloang](./../images/chapter1/f0017-04.png)
+
+But for other types, a value of 0 would be invalid, so the zero value for that type may be something else. The zero value for string variables is an empty string, for example, and the zero value for bool variables is false.
+
+![Play Goloang](./../images/chapter1/f0017-05.png)
+
+## Code Magnets
+
+![Play Goloang](./../images/chapter1/f0018-01.png)
+
+A Go program is all scrambled up on the fridge. Can you reconstruct the code snippets to make a working program that will produce the given output?
+
+![Play Goloang](./../images/chapter1/f0018-02.png)
+
+## Short variable declarations
+
+We mentioned that you can declare variables and assign them values on the same line:
+
+![Play Goloang](./../images/chapter1/f0019-01.png)
+
+But if you know what the initial value of a variable is going to be as soon as you declare it, it’s more typical to use a **short variable declaration**. Instead of explicitly declaring the type of the variable and later assigning to it with =, you do both at once using **:=**.
+
+Let’s update the previous example to use short variable declarations:
+
+![Play Goloang](./../images/chapter1/f0019-02.png)
+
+There’s no need to explicitly declare the variable’s type; the type of the value assigned to the variable becomes the type of that variable.
+
+Because short variable declarations are so convenient and concise, they’re used more often than regular declarations. You’ll still see both forms occasionally, though, so it’s important to be familiar with both.
+
+## Breaking Stuff is Educational!
+
+![Play Goloang](./../images/chapter1/f0020-01.png)
+
+Take our program that uses variables, try making one of the changes below, and run it. Then undo your change and try the next one. See what happens!
+
+![Play Goloang](./../images/chapter1/f0020-01a.png)
+
+| If you do this...                                                          | ...it will fail because...                                                                                                                                                                                                                             |
+| -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Add a second declaration for the same variable quantity := 4 quantity := 4 | You can only declare a variable once. (Although you can assign new values to it as often as you want. You can also declare other variables with the same name, as long as they’re in a different scope. We’ll learn about scopes in the next chapter.) |
+| Delete the : from a short variable declaration quantity = 4                | If you forget the :, it’s treated as an assignment, not a declaration, and you can’t assign to a variable that hasn’t been declared.                                                                                                                   |
+| Assign a string to an int variable quantity := 4 quantity = "a"            | Variables can only be assigned values of the same type.                                                                                                                                                                                                |
+| Mismatch number of variables and values length, width := 1.2               | You’re required to provide a value for every variable you’re assigning, and a variable for every value.                                                                                                                                                |
+| Remove code that uses a variable ~~fmt.Println(customerName)~~             | All declared variables must be used in your program. If you remove the code that uses a variable, you must also remove the declaration.                                                                                                                |
+
+## Naming rules
+
+Go has one simple set of rules that apply to the names of variables, functions, and types:
+
+- A name must begin with a letter, and can have any number of additional letters and numbers.
+
+- If the name of a variable, function, or type begins with a capital letter, it is considered exported and can be accessed from packages outside the current one. (This is why the P in fmt.Println is capitalized: so it can be used from the main package or any other.) If a variable/function/type name begins with a lowercase letter, it is considered unexported and can only be accessed within the current package.
+
+![Play Goloang](./../images/chapter1/f0021-01.png)
+
+Those are the only rules enforced by the language. But the Go community follows some additional conventions as well:
+
+- If a name consists of multiple words, each word after the first should be capitalized, and they should be attached together without spaces between them, like this: topPrice, RetryConnection, and so on. (The first letter of the name should only be capitalized if you want to export it from the package.) This style is often called camel case because the capitalized letters look like the humps on a camel.
+
+- When the meaning of a name is obvious from the context, the Go community’s convention is to abbreviate it: to use i instead of index, max instead of maximum, and so on. (However, we at Head First believe that nothing is obvious when you’re learning a new language, so we will not be following that convention in this book.)
+
+![Play Goloang](./../images/chapter1/f0021-02.png)
+
+**Only variables, functions, or types whose names begin with a capital letter are considered exported: accessible from packages outside the current package.**
+
+## Conversions
+
+Math and comparison operations in Go require that the included values be of the same type. If they’re not, you’ll get an error when trying to run your code.
+
+![Play Goloang](./../images/chapter1/f0022-01.png)
+
+The same is true of assigning new values to variables. If the type of value being assigned doesn’t match the declared type of the variable, you’ll get an error.
+
+![Play Goloang](./../images/chapter1/f0022-02.png)
+
+The solution is to use conversions, which let you convert a value from one type to another type. You just provide the type you want to convert a value to, immediately followed by the value you want to convert in parentheses.
+
+![Play Goloang](./../images/chapter1/f0022-03.png)
+
+The result is a new value of the desired type. Here’s what we get when we call TypeOf on the value in an integer variable, and again on that same value after conversion to a float64:
+
+![Play Goloang](./../images/chapter1/f0022-04.png)
+
+Let’s update our failing code example to convert the int value to a float64 before using it in any math operations or comparisons with other float64 values.
+
+![Play Goloang](./../images/chapter1/f0023-01.png)
+
+The math operation and comparison both work correctly now!
+
+Now let’s try converting an int to a float64 before assigning it to a float64 variable:
+
+![Play Goloang](./../images/chapter1/f0023-02.png)
+
+Again, with the conversion in place, the assignment is successful.
+
+When making conversions, be aware of how they might change the resulting values. For example, float64 variables can store fractional values, but int variables can’t. When you convert a float64 to an int, the fractional portion is simply dropped! This can throw off any operations you do with the resulting value.
+
+![Play Goloang](./../images/chapter1/f0023-03.png)
+
+As long as you’re cautious, though, you’ll find conversions essential to working with Go. They allow otherwise-incompatible types to work together.
