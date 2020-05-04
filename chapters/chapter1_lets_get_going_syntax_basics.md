@@ -421,3 +421,148 @@ When making conversions, be aware of how they might change the resulting values.
 ![Play Goloang](./../images/chapter1/f0023-03.png)
 
 As long as you’re cautious, though, you’ll find conversions essential to working with Go. They allow otherwise-incompatible types to work together.
+
+## EXERCISE
+
+We’ve written the Go code below to calculate a total price with tax and determine if we have enough funds to make a purchase. But we’re getting errors when we try to include it in a full program!
+
+![Play Goloang](./../images/chapter1/f0024-01.png)
+
+Fill in the blanks below to update this code. Fix the errors so that it produces the expected output. (Hint: Before doing math operations or comparisons, you’ll need to use conversions to make the types compatible.)
+
+![Play Goloang](./../images/chapter1/f0024-02.png)
+
+## Installing Go on your computer
+
+The Go Playground is a great way to try out the language. But its practical uses are limited. You can’t use it to work with files, for example. And it doesn’t have a way to take user input from the terminal, which we’re going to need for an upcoming program.
+
+So, to wrap up this chapter, let’s download and install Go on your computer. Don’t worry, the Go team has made it really easy! On most operating systems, you just have to run an installer program, and you’ll be done.
+
+1. Visit https://golang.org in your web browser.
+
+2. Click the download link.
+
+3. Select the installation package for your operating system (OS). The download should begin automatically.
+
+4. Visit the installation instructions page for your OS (you may be taken there automatically after the download starts), and follow the directions there.
+
+5. Open a new terminal or command prompt window.
+
+6. Confirm Go was installed by typing go version at the prompt and hitting the Return or Enter key. You should see a message with the version of Go that’s installed.
+
+> Websites are always changing.
+
+It’s possible that golang.org or the Go installer will be updated after this book is published, and these directions will no longer be completely accurate.
+
+## Compiling Go code
+
+Our interaction with the Go Playground has consisted of typing in code and having it mysteriously run. Now that we’ve actually installed Go on your computer, it’s time to take a closer look at how this works.
+
+Computers actually aren’t capable of running Go code directly. Before that can happen, we need to take the source code file and `compile` it: convert it to a binary format that a CPU can execute.
+
+![Play Goloang](./../images/chapter1/f0026-01.png)
+
+Let’s try using our new Go installation to compile and run our “Hello, Go!” example from earlier.
+
+![Play Goloang](./../images/chapter1/f0026-03.png)
+
+### Let's do this
+
+1. Using your favorite text editor, save our “Hello, Go!” code from earlier in a plain-text file named hello.go.
+
+2. Open a new terminal or command prompt window.
+
+3. In the terminal, change to the directory where you saved hello.go.
+
+4. Run go fmt hello.go to clean up the code formatting. (This step isn’t required, but it’s a good idea anyway.)
+
+5. Run go build hello.go to compile the source code. This will add an executable file to the current directory. On macOS or Linux, the executable will be named just hello. On Windows, the executable will be named hello.exe.
+
+6. Run the executable file. On macOS or Linux, do this by typing ./hello (which means “run a program named hello in the current directory”). On Windows, just type hello.exe.
+
+![Play Goloang](./../images/chapter1/f0026-04.png)
+
+## Go tools
+
+When you install Go, it adds an executable named go to your command prompt. The go executable gives you access to various commands, including:
+
+| Command    | Description                                                     |
+| ---------- | --------------------------------------------------------------- |
+| go build   | Compiles source code files into binary files.                   |
+| go run     | Compiles and runs a program, without saving an executable file. |
+| go fmt     | Reformats source files using Go standard formatting.            |
+| go version | Displays the current Go version.                                |
+
+We just tried the `go fmt` command, which reformats your code in the standard Go format. It’s equivalent to the Format button on the Go Playground site. We recommend running `go fmt` on every source file you create.
+
+> NOTE - Most editors can be set up to automatically run go fmt every time you save a file! See https://blog.golang.org/go-fmt-your-code.
+
+We also used the go build command to compile code into an executable file. Executable files like this can be distributed to users, and they’ll be able to run them even if they don’t have Go installed.
+
+But we haven’t tried the go run command yet. Let’s do that now.
+
+## Try out code quickly with “go run”
+
+The go run command compiles and runs a source file, without saving an executable file to the current directory. It’s great for quickly trying out simple programs. Let’s use it to run our hello.go sample.
+
+![Play Goloang](./../images/chapter1/f0027-02.png)
+
+1. Open a new terminal or command prompt window.
+
+2. In the terminal, change to the directory where you saved hello.go.
+
+3. Type go run hello.go and hit Enter/Return. (The command is the same on all operating systems.)
+
+![Play Goloang](./../images/chapter1/f0027-01.png)
+
+You’ll immediately see the program output. If you make changes to the source code, you don’t have to do a separate compilation step; just run your code with go run and you’ll be able to see the results right away. When you’re working on small programs, go run is a handy tool to have!
+
+## Your Go Toolbox
+
+![Play Goloang](./../images/chapter1/f0028-01.png)
+
+**That’s it for Chapter 1! You’ve added function calls and types to your toolbox.**
+
+## NOTE
+
+### Function calls
+
+- A function is a chunk of code that you can call from other places in your program.
+
+- When calling a function, you can use arguments to provide the function with data.
+
+### Types
+
+- Values in Go are classified into different types, which specify what the values can be used for.
+
+- Math operations and comparisons between different types are not allowed, but you can convert a value to a new type if needed.
+
+- Go variables can only store values of their declared type.
+
+## BULLET POINTS
+
+- A package is a group of related functions and other code.
+
+- Before you can use a package’s functions within a Go file, you need to import that package.
+
+- A string is a series of bytes that usually represent text characters.
+
+- A rune represents a single text character.
+
+- Go’s two most common numeric types are int, which holds integers, and float64, which holds floating-point numbers.
+
+- The bool type holds Boolean values, which are either true or false.
+
+- A variable is a piece of storage that can contain values of a specified type.
+
+- If no value has been assigned to a variable, it will contain the zero value for its type. Examples of zero values include 0 for int or float64 variables, or "" for string variables.
+
+- You can declare a variable and assign it a value at the same time using a := short variable declaration.
+
+- A variable, function, or type can only be accessed from code in other packages if its name begins with a capital letter.
+
+- The go fmt command automatically reformats source files to use Go standard formatting. You should run go fmt on any code that you plan to share with others.
+
+- The go build command compiles Go source code into a binary format that computers can execute.
+
+- The go run command compiles and runs a program without saving an executable file in the current directory.
