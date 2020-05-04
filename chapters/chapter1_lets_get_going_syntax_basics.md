@@ -246,3 +246,43 @@ You can also define numbers directly within your code, and it’s even simpler t
 ![Play Goloang](./../images/chapter1/f0013-02.png)
 
 As we’ll see shortly, Go treats integer and floating-point numbers as different types, so remember that a decimal point can be used to distinguish an integer from a floating-point number.
+
+## Math operations and comparisons
+
+Go’s basic math operators work just like they do in most other languages. The + symbol is for addition, - for subtraction, \* for multiplication, and / for division.
+![Play Goloang](./../images/chapter1/f0013-03.png)
+
+You can use < and > to compare two values and see if one is less than or greater than another. You can use == (that’s two equals signs) to see if two values are equal, and != (that’s an exclamation point and an equals sign, read aloud as “not equal”) to see if two values are not equal. <= tests whether the first value is less than or equal to the second, and >= tests whether the first value is greater than or equal to the second.
+
+The result of a comparison is a Boolean value, either `true` or `false`.
+
+![Play Goloang](./../images/chapter1/f0013-04.png)
+
+## Types
+
+In a previous code sample, we saw the `math.Floor` function, which rounds a floating-point number down to the nearest whole number, and the `strings.Title` function, which converts a string to title case. It makes sense that you would pass a number as an argument to the `Floor` function, and a string as an argument to the `Title` function. But what would happen if you passed a string to Floor and a number to `Title`?
+
+![Play Goloang](./../images/chapter1/f0014-01.png)
+
+Go prints two error messages, one for each function call, and the program doesn’t even run!
+
+Things in the world around you can often be classified into different types based on what they can be used for. You don’t eat a car or truck for breakfast (because they’re vehicles), and you don’t drive an omelet or bowl of cereal to work (because they’re breakfast foods).
+
+Likewise, values in Go are all classified into different **types**, which specify what the values can be used for. Integers can be used in math operations, but strings can’t. Strings can be capitalized, but numbers can’t. And so on.
+
+Go is **statically typed**, which means that it knows what the types of your values are even before your program runs. Functions expect their arguments to be of particular types, and their return values have types as well (which may or may not be the same as the argument types). If you accidentally use the wrong type of value in the wrong place, Go will give you an error message. This is a good thing: it lets you find out there’s a problem before your users do!
+
+> Go is statically typed. If you use the wrong type of value in the wrong place, Go will let you know.
+
+You can view the type of any value by passing it to the reflect package’s TypeOf function. Let’s find out what the types are for some of the values we’ve already seen:
+
+![Play Goloang](./../images/chapter1/f0015-01.png)
+
+Here’s what those types are used for:
+
+| Type    | Description                                                                                                                                                                                                                                          |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| int     | An integer. Holds whole numbers.                                                                                                                                                                                                                     |
+| float64 | A floating-point number. Holds numbers with a fractional part. (The 64 in the type name is because 64 bits of data are used to hold the number. This means that float64 values can be fairly, but not infinitely, precise before being rounded off.) |
+| bool    | A Boolean value. Can only be true or false.                                                                                                                                                                                                          |
+| string  | A string. A series of data that usually represents text characters.                                                                                                                                                                                  |
