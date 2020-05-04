@@ -170,3 +170,79 @@ Here’s a code sample that calls functions from a couple other packages. Becaus
 Once we’ve imported the math and strings packages, we can access the math package’s Floor function with math.Floor, and the strings package’s Title function with strings.Title.
 
 You may have noticed that in spite of including those two function calls in our code, the above sample doesn’t display any output. We’ll look at how to fix that next.
+
+## Function return values
+
+In our previous code sample, we tried calling the math.Floor and strings.Title functions, but they didn’t produce any output:
+
+```go
+    package main
+    import (
+        "math"
+        "strings"
+    )
+    func main() {
+        math.Floor(2.75)
+        strings.Title("head first go")
+    }
+```
+
+> NOTE - This program produces no output!
+
+When we call the `fmt.Println` function, we don’t need to communicate with it any further after that. We pass one or more values for `Println` to print, and we trust that it printed them. But sometimes a program needs to be able to call a function and get data back from it. For this reason, functions in most programming languages can have **return values**: a value that the function computes and returns to its caller.
+
+The `math.Floor` and `strings.Title` functions are both examples of functions that use return values. The `math.Floor` function takes a floating-point number, rounds it down to the nearest whole number, and returns that whole number. And the `strings.Title` function takes a string, capitalizes the first letter of each word it contains (converting it to “title case”), and returns the capitalized string.
+
+To actually see the results of these function calls, we need to take their return values and pass those to `fmt.Println`:
+
+![Play Goloang](./../images/chapter1/f0009-01.png)
+
+Once this change is made, the return values get printed, and we can see the results.
+
+## Strings
+
+We’ve been passing **strings** as arguments to Println. A string is a series of bytes that usually represent text characters. You can define strings directly within your code using **string literals**: text between double quotation marks that Go will treat as a string.
+
+![Play Goloang](./../images/chapter1/f0011-02.png)
+
+Within strings, characters like newlines, tabs, and other characters that would be hard to include in program code can be represented with escape sequences: a backslash followed by characters that represent another character.
+
+![Play Goloang](./../images/chapter1/f0011-03.png)
+
+| Escape sequence | Value                   |
+| --------------- | ----------------------- |
+| \n              | A newline character.    |
+| \t              | A tab character.        |
+| \"              | Double quotation marks. |
+| \\              | A backslash.            |
+
+## Runes
+
+Whereas strings are usually used to represent a whole series of text characters, Go’s runes are used to represent single characters.
+
+![Play Goloang](./../images/chapter1/f0012-01.png)
+
+String literals are written surrounded by double quotation marks ("), but **rune literals** are written with single quotation marks (').
+
+Go programs can use almost any character from almost any language on earth, because Go uses the Unicode standard for storing runes. Runes are kept as numeric codes, not the characters themselves, and if you pass a rune to fmt.Println, you’ll see that numeric code in the output, not the original character.
+
+![Play Goloang](./../images/chapter1/f0012-02.png)
+
+Just as with string literals, escape sequences can be used in a rune literal to represent characters that would be hard to include in program code:
+
+![Play Goloang](./../images/chapter1/f0012-03.png)
+
+## Booleans
+
+Boolean values can be one of only two values: `true` or `false`. They’re especially useful with conditional statements, which cause sections of code to run only if a condition is true or false. (We’ll look at conditionals in the next chapter.)
+
+![Play Goloang](./../images/chapter1/f0012-04.png)
+
+## Numbers
+
+You can also define numbers directly within your code, and it’s even simpler than string literals: just type the number.
+
+![Play Goloang](./../images/chapter1/f0013-01.png)
+![Play Goloang](./../images/chapter1/f0013-02.png)
+
+As we’ll see shortly, Go treats integer and floating-point numbers as different types, so remember that a decimal point can be used to distinguish an integer from a floating-point number.
