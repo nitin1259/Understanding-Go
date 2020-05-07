@@ -25,6 +25,7 @@ Go is a programming language that focuses on simplicity and speed. It’s simple
 In less theory and more code, we explore the most important Go Programming Language Features.
 
 - [Chapter 1. let’s get going: Syntax Basics](chapters/chapter1_lets_get_going_syntax_basics.md)
+- [Chapter 2. which code runs next?: Conditionals and Loops](chapters/chapter2_conditions_and_loops.md)
 
 ### What You will learn
 
