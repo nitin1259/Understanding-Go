@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"log"
+	"reflect"
 )
 
 func main() {
@@ -19,11 +19,40 @@ func main() {
 	log.Fatal(err)
 	*/
 
-	paintReq, err := paintNeededForWall(4.0, -3.2)
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println("Paint requried: ", paintReq)
+	/*
+		paintReq, err := paintNeededForWall(4.0, -3.2)
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println("Paint requried: ", paintReq)
+	*/
+
+	// pointers
+	// Go is "pass by value"
+	// Values that represent the address of a variable are known as pointers, because they point to the location where the variable can be found.
+
+	// var intval int
+	intval := 6
+	fmt.Println("type of intval address: ", reflect.TypeOf(intval))
+	fmt.Println("type of intval address: ", reflect.TypeOf(&intval))
+
+	// var pointerInt *int
+	// pointerInt = &intval
+	pointerInt := &intval
+	fmt.Println(pointerInt)
+	fmt.Println(*pointerInt)
+	*pointerInt = 12 //update the value from pointer view
+	fmt.Println(intval)
+	fmt.Println(*pointerInt)
+
+	fmt.Println("********* passing and recieving pointer to function *******")
+	doDouble(pointerInt)
+	fmt.Println(intval)
+}
+
+func doDouble(intvalPointer *int) {
+	// *intvalPointer = *intvalPointer * 2
+	*intvalPointer *= 2
 
 }
 
