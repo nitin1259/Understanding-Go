@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"log"
+	"math"
 	"os"
 	"strconv"
 )
@@ -26,6 +27,7 @@ func main() {
 	}
 	*/
 
+	/*
 	numbers, err:= getFloatsFromFile()
 	if err!=nil{
 		log.Fatal(err)
@@ -37,6 +39,34 @@ func main() {
 	}
 
 	fmt.Printf("Average value: %0.2f \n", sum/float64(len(numbers)))
+	*/
+	// Getting command-line arguments from the os.Args slice
+
+	fmt.Println(os.Args) // go run exercise/appendingIssue-Slices.go 45.5 56.3 67.2 23.6
+	cmdArgs:= os.Args;
+	cmdArgs = cmdArgs[1:]
+	fmt.Println(cmdArgs)
+
+
+	// Variadic functions
+	// nonvariadic arguments are always required; it’s a compile error to omit those. 
+	// Only the last parameter in a function definition can be variadic; you can’t place it in front of required parameters
+
+	fmt.Println(findMaxFloat(23.4, 29.1, 5.32, 67.3))
+
+	someNumbers:= []float64{23.4, 29.1, 5.32, 67.3}
+	fmt.Println(findMaxFloat(someNumbers...))// way of passing a same type slice to variacdic funciton...
+
+}
+
+func findMaxFloat(numbers ...float64)float64{
+	max:= math.Inf(-1);
+	for _, num:= range numbers{
+		if num>max{
+			max = num
+		}
+	}
+	return max;
 }
 
 func getFloatsFromFile() ([]float64, error){
