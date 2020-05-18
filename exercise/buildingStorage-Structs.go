@@ -8,6 +8,19 @@ type subscriber struct {
 	active bool
 }
 
+type Employee struct {
+	name    string
+	salary  float64
+	homeAdd Address
+}
+
+type Address struct {
+	street string
+	city   string
+	state  string
+	zip    string
+}
+
 type part struct {
 	description string
 	count       int
@@ -57,19 +70,28 @@ func main() {
 		fmt.Println("updated part order: ", p)
 	*/
 
-	sub := defaultSubscriber("Nitin")
-	applyDiscount(sub)
-	printSubscriber(sub)
+	/*
+		sub := defaultSubscriber("Nitin")
+		applyDiscount(sub)
+		printSubscriber(sub)
 
-	// String literals
-	sub2 := subscriber{
-		name:   "kapil",
-		rate:   9.99,
-		active: false,
-	}
+		// String literals
+		sub2 := subscriber{
+			name:   "kapil",
+			rate:   9.99,
+			active: false,
+		}
 
-	printSubscriber(&sub2)
+		printSubscriber(&sub2)
+	*/
 
+	address := Address{street: "dalia lama", city: "Sanghai", state: "kajakode", zip: "34221"}
+	fmt.Println("Address: ", address)
+
+	emp := Employee{name: "Sachin", salary: 23456.7, homeAdd: address}
+	fmt.Printf("Employee details: %#v \n", emp)
+
+	fmt.Println(emp.homeAdd.state)
 }
 
 func defaultSubscriber(name string) *subscriber {
