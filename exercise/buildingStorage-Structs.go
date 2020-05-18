@@ -90,7 +90,7 @@ func main() {
 	address := Address{street: "dalia lama", city: "Sanghai", state: "kajakode", zip: "34221"}
 	fmt.Println("Address: ", address)
 
-	emp := Employee{name: "Sachin", salary: 23456.7, homeAdd: address}
+	emp := Employee{name: "Sachin", salary: 23456.7, Address: address}
 	fmt.Printf("Employee details: %#v \n", emp)
 
 	fmt.Println(emp.Address.state)
