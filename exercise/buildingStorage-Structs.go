@@ -16,44 +16,66 @@ type part struct {
 func main() {
 	fmt.Println("building storage: Structs")
 
-	var mystruct struct {
-		num    float64
-		name   string
-		toogle bool
-	}
+	/*
+		var mystruct struct {
+			num    float64
+			name   string
+			toogle bool
+		}
 
-	fmt.Printf("%#v \n", mystruct)
+		fmt.Printf("%#v \n", mystruct)
 
-	mystruct.name = "nitin"
-	mystruct.num = 23.4
-	mystruct.toogle = true
+		mystruct.name = "nitin"
+		mystruct.num = 23.4
+		mystruct.toogle = true
 
-	fmt.Println(mystruct.name, mystruct)
+		fmt.Println(mystruct.name, mystruct)
 
-	// defined types and structs
+		// defined types and structs
 
-	type car struct {
-		name     string
-		topspeed int
-	}
+		type car struct {
+			name     string
+			topspeed int
+		}
 
-	var suzuki car
+		var suzuki car
 
-	suzuki.name = "maruti"
-	suzuki.topspeed = 140
+		suzuki.name = "maruti"
+		suzuki.topspeed = 140
 
-	fmt.Println("struct type suzuki: ", suzuki)
+		fmt.Println("struct type suzuki: ", suzuki)
 
-	var partInput part
-	partInput.count = 20
-	partInput.description = "part one"
-	showInfo(partInput)
+		var partInput part
+		partInput.count = 20
+		partInput.description = "part one"
+		showInfo(partInput)
 
-	p := minimumPartOrder("min order", 60)
-	fmt.Println("part order value: ", p)
+		p := minimumPartOrder("min order", 60)
+		fmt.Println("part order value: ", p)
 
-	updatePartOrder(&p)
-	fmt.Println("updated part order: ", p)
+		updatePartOrder(&p)
+		fmt.Println("updated part order: ", p)
+	*/
+
+	sub := defaultSubscriber("Nitin")
+	printSubscriber(sub)
+
+}
+
+func defaultSubscriber(name string) *subscriber {
+	var sub subscriber
+	sub.name = name
+	sub.rate = 10.0
+	sub.active = true
+
+	return &sub
+}
+
+func printSubscriber(sub *subscriber) {
+
+	fmt.Println("name: ", sub.name)
+	fmt.Println("rate: ", sub.rate)
+	fmt.Println("active?: ", sub.active)
 }
 
 func showInfo(input part) {
