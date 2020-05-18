@@ -8,12 +8,14 @@ type subscriber struct {
 	active bool
 }
 
+// Employee struct type to hold employee data
 type Employee struct {
-	name    string
-	salary  float64
-	homeAdd Address
+	name   string
+	salary float64
+	Address
 }
 
+// Address struct type to hold address data
 type Address struct {
 	street string
 	city   string
@@ -91,7 +93,8 @@ func main() {
 	emp := Employee{name: "Sachin", salary: 23456.7, homeAdd: address}
 	fmt.Printf("Employee details: %#v \n", emp)
 
-	fmt.Println(emp.homeAdd.state)
+	fmt.Println(emp.Address.state)
+	fmt.Println(emp.state)
 }
 
 func defaultSubscriber(name string) *subscriber {
