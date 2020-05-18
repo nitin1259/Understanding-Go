@@ -58,7 +58,17 @@ func main() {
 	*/
 
 	sub := defaultSubscriber("Nitin")
+	applyDiscount(sub)
 	printSubscriber(sub)
+
+	// String literals
+	sub2 := subscriber{
+		name:   "kapil",
+		rate:   9.99,
+		active: false,
+	}
+
+	printSubscriber(&sub2)
 
 }
 
@@ -69,6 +79,9 @@ func defaultSubscriber(name string) *subscriber {
 	sub.active = true
 
 	return &sub
+}
+func applyDiscount(sub *subscriber) {
+	sub.rate = 5.0
 }
 
 func printSubscriber(sub *subscriber) {
