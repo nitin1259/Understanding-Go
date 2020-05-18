@@ -25,4 +25,26 @@ func main() {
 	}
 	fmt.Println(anotherDate)
 
+	event := utils.Event{}
+	event.SetTitle("moms birthday")
+	// event.Date.Day ==23 // this will not work as its unexported in Date type
+	errD := event.Date.SetDay(23)
+	if errD != nil {
+		log.Fatal("Entered : ", errD)
+	}
+	errM := event.SetMonth(10)
+	if errM != nil {
+		log.Fatal("Entered : ", errM)
+	}
+	errY := event.Date.SetYear(1981)
+	if errY != nil {
+		log.Fatal("Entered : ", errY)
+	}
+
+	fmt.Println("events: ", event)
+
+	// errI := event.Date.SetYear(-1981)
+	// if errI != nil {
+	// 	log.Fatal("Entered : ", errI)
+	// }
 }
