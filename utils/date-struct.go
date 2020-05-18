@@ -36,3 +36,20 @@ func (d *Date) SetDay(day int) error {
 	d.day = day
 	return nil
 }
+
+//getters method
+
+// Year function to get year value
+func (d *Date) Year() int {
+	return d.year
+}
+
+// Month function to get month value
+func (d *Date) Month() int {
+	return d.month
+}
+
+// Day function to get day value
+func (d *Date) Day() int {
+	return d.day
+}
