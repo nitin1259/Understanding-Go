@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"path/filepath"
 )
 
 func main() {
@@ -22,6 +23,8 @@ func main() {
 		fmt.Println(err)
 	}
 	fmt.Println(sl)
+
+	scanDirectory("keyboard")
 }
 
 func doSocial() error {
@@ -47,4 +50,28 @@ func readDirectory(dirName string) ([]string, error) {
 		retSl = append(retSl, fmt.Sprintf("%s: %s", fileType, file.Name()))
 	}
 	return retSl, nil
+}
+
+// recursive function to scan a directory for all files
+func scanDirectory(dirName string) error {
+	fmt.Println(dirName)
+	fileArr, err := ioutil.ReadDir(dirName)
+	if err != nil {
+		return fmt.Errorf("error while reading directory %s error: %s", dirName, err)
+	}
+	// retSl := make([]string, 0)
+	for _, file := range fileArr {
+		filepath := filepath.Join(dirName, file.Name())
+		if file.IsDir() {
+			err = scanDirectory(filepath)
+			if err != nil {
+				return fmt.Errorf("error while reading directory %s error: %s", dirName, err)
+			}
+		} else {
+			fmt.Println(filepath)
+		}
+
+		// fmt.Println(file.IsDir(), file.Name())
+	}
+	return nil
 }
