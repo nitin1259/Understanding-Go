@@ -5,7 +5,6 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"reflect"
 	"time"
 )
 
@@ -17,37 +16,62 @@ func main() {
 	// fmt.Println("main end")
 	// time.Sleep(time.Second)
 
-	go responseSizeofWeb("http://www.example.com/")
-	go responseSizeofWeb("http://www.golang.org/")
-	go responseSizeofWeb("http://www.golang.org/doc")
-	time.Sleep(time.Second * 5)
+	/*
+		go responseSizeofWeb("http://www.example.com/")
+		go responseSizeofWeb("http://www.golang.org/")
+		go responseSizeofWeb("http://www.golang.org/doc")
+		time.Sleep(time.Second * 5)
 
-	// channels
-	var myChannel chan float64
-	myChannel = make(chan float64)
-	// myChannel <- 3.14 // sending value to channel
-	// <-myChannel       // receiving value from channel
-	fmt.Println(reflect.TypeOf(myChannel), myChannel)
+		// channels
+		var myChannel chan float64
+		myChannel = make(chan float64)
+		// myChannel <- 3.14 // sending value to channel
+		// <-myChannel       // receiving value from channel
+		fmt.Println(reflect.TypeOf(myChannel), myChannel)
 
-	someChannel := make(chan string)
+		someChannel := make(chan string)
 
-	//Synchronizing goroutines with channels
-	go greetings(someChannel)
-	reciever := <-someChannel
-	fmt.Println(reciever)
+		//Synchronizing goroutines with channels
+		go greetings(someChannel)
+		reciever := <-someChannel
+		fmt.Println(reciever)
 
-	// another example
-	channel1 := make(chan string)
-	channel2 := make(chan string)
-	go abc(channel1)
-	go def(channel2)
+		// another example
+		channel1 := make(chan string)
+		channel2 := make(chan string)
+		go abc(channel1)
+		go def(channel2)
 
-	fmt.Println(<-channel1)
-	fmt.Println(<-channel2)
-	fmt.Println(<-channel1)
-	fmt.Println(<-channel2)
-	fmt.Println(<-channel1)
-	fmt.Println(<-channel2)
+		fmt.Println(<-channel1)
+		fmt.Println(<-channel2)
+		fmt.Println(<-channel1)
+		fmt.Println(<-channel2)
+		fmt.Println(<-channel1)
+		fmt.Println(<-channel2)
+	*/
+
+	my_channel := make(chan string)
+	go send(my_channel)
+	reportNap("receving go-routine", 5)
+	fmt.Println(<-my_channel)
+	fmt.Println(<-my_channel)
+
+}
+
+func reportNap(name string, sec int) {
+	for i := 0; i < sec; i++ {
+		fmt.Println(name, "Sleeping..")
+		time.Sleep(1 * time.Second)
+	}
+	fmt.Println(name, "wakes up")
+}
+
+func send(myChannel chan string) {
+	reportNap("sending go-routine", 2)
+	fmt.Println("******** Sending value *******")
+	myChannel <- "a"
+	fmt.Println("******** Sending value *******")
+	myChannel <- "b"
 
 }
 
