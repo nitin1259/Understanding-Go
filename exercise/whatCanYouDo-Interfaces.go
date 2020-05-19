@@ -44,24 +44,24 @@ func (m *MyType1) MethodNotInInterface() {
 
 // MethodWithOutParamter interface
 func (m MyType2) MethodWithOutParamter() {
-	fmt.Println("Method with out parameter", m)
+	fmt.Println("2 Method with out parameter", m)
 }
 
 // MethodWithParameter interface method
 func (m MyType2) MethodWithParameter(input float64) {
-	fmt.Println("Method with parameter: ", input)
+	fmt.Println("2 Method with parameter: ", input)
 
 }
 
 //MethodWithReturnType interface method
 func (m MyType2) MethodWithReturnType() string {
-	fmt.Println("Method with return type")
-	return "Method with Return type"
+	fmt.Println(" 2Method with return type")
+	return " 2 Method with Return type"
 }
 
 // MethodNotInInterface not from interface
 func (m *MyType2) MethodNotInInterface() {
-	fmt.Println("Method not in interface")
+	fmt.Println("2 Method not in interface")
 }
 
 func main() {
@@ -87,6 +87,8 @@ func main() {
 	// Type assertions
 	tryOurNonInterfaceMethod(value1)
 
+	tryOurNonInterfaceMethod(value2)
+
 }
 
 func genericMyInterfaceParameter(inputInf MyInterface) {
@@ -104,6 +106,14 @@ func tryOurNonInterfaceMethod(inputInf MyInterface) {
 	//  Its syntax even looks like a cross between a method call and a type conversion.
 	//  After an interface value, you type a dot, followed by a pair of parentheses with the concrete type.
 	// (Or rather, what you’re asserting the value’s concrete type is.)
-	mytype1 := inputInf.(MyType1)
-	mytype1.MethodNotInInterface()
+	mytype1, ok := inputInf.(MyType1)
+	if ok {
+
+		mytype1.MethodNotInInterface()
+	}
+
+	if !ok {
+		fmt.Println("assertion type is not succesful")
+	}
+
 }
