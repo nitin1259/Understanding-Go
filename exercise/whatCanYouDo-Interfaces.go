@@ -59,6 +59,11 @@ func (m MyType2) MethodWithReturnType() string {
 	return "Method with Return type"
 }
 
+// MethodNotInInterface not from interface
+func (m *MyType2) MethodNotInInterface() {
+	fmt.Println("Method not in interface")
+}
+
 func main() {
 	fmt.Println("what can you do?: Interfaces")
 
@@ -75,10 +80,30 @@ func main() {
 	genericMyInterfaceParameter(value1)
 	genericMyInterfaceParameter(value2)
 
+	//You can only call methods defined as part of the interface
+	// value1.MethodNotInInterface() // this will produce error.
+	value2.MethodNotInInterface()
+
+	// Type assertions
+	tryOurNonInterfaceMethod(value1)
+
 }
 
 func genericMyInterfaceParameter(inputInf MyInterface) {
 
 	inputInf.MethodWithOutParamter()
 	inputInf.MethodWithReturnType()
+	// inputInf.MethodNotInInterface() // this will produce error.
+}
+
+func tryOurNonInterfaceMethod(inputInf MyInterface) {
+	// inputInf.MethodNotInInterface() // this method is not part of interface
+
+	// When you have a value of a concrete type assigned to a variable with an interface type,
+	// a type assertion lets you get the concrete type back. It’s kind of like a type conversion.
+	//  Its syntax even looks like a cross between a method call and a type conversion.
+	//  After an interface value, you type a dot, followed by a pair of parentheses with the concrete type.
+	// (Or rather, what you’re asserting the value’s concrete type is.)
+	mytype1 := inputInf.(MyType1)
+	mytype1.MethodNotInInterface()
 }
