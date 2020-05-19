@@ -18,6 +18,7 @@ type MyInterface interface {
 	MethodWithOutParamter()
 	MethodWithParameter(float64)
 	MethodWithReturnType() string
+	somevariable(){}
 }
 
 // MethodWithOutParamter interface
@@ -89,6 +90,16 @@ func main() {
 
 	tryOurNonInterfaceMethod(value2)
 
+	// the empty interface
+	// The type interface{} is known as the empty interface, and it’s used to accept values of any type. The empty interface doesn’t have any methods that are required to satisfy it, and so every type satisfies it.
+
+	acceptingAnyValue("something")
+	acceptingAnyValue(345)
+	acceptingAnyValue(45.345)
+	acceptingAnyValue(false)
+	acceptingAnyValue(MyType1(1))
+
+	// The empty interface doesn’t require any methods to satisfy it, and so it’s satisfied by all types.
 }
 
 func genericMyInterfaceParameter(inputInf MyInterface) {
@@ -116,4 +127,9 @@ func tryOurNonInterfaceMethod(inputInf MyInterface) {
 		fmt.Println("assertion type is not succesful")
 	}
 
+}
+
+// If you declare a function that accepts a parameter with the empty interface as its type, then you can pass it values of any type as an argument:
+func acceptingAnyValue(thing interface{}) {
+	fmt.Println(thing)
 }
