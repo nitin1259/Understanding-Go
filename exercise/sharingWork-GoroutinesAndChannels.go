@@ -16,12 +16,15 @@ func main() {
 	// fmt.Println("main end")
 	// time.Sleep(time.Second)
 
+	sizeChan := make(chan int)
+	go responseSizeofWeb("http://www.example.com/", sizeChan)
+	fmt.Println("size: ", <-sizeChan)
+	go responseSizeofWeb("http://www.golang.org/", sizeChan)
+	fmt.Println("size: ", <-sizeChan)
+	go responseSizeofWeb("http://www.golang.org/doc", sizeChan)
+	fmt.Println("size: ", <-sizeChan)
+	// time.Sleep(time.Second * 5)
 	/*
-		go responseSizeofWeb("http://www.example.com/")
-		go responseSizeofWeb("http://www.golang.org/")
-		go responseSizeofWeb("http://www.golang.org/doc")
-		time.Sleep(time.Second * 5)
-
 		// channels
 		var myChannel chan float64
 		myChannel = make(chan float64)
@@ -50,11 +53,11 @@ func main() {
 		fmt.Println(<-channel2)
 	*/
 
-	my_channel := make(chan string)
-	go send(my_channel)
-	reportNap("receving go-routine", 5)
-	fmt.Println(<-my_channel)
-	fmt.Println(<-my_channel)
+	// my_channel := make(chan string)
+	// go send(my_channel)
+	// reportNap("receving go-routine", 5)
+	// fmt.Println(<-my_channel)
+	// fmt.Println(<-my_channel)
 
 }
 
@@ -87,7 +90,7 @@ func def(chan2 chan string) {
 	chan2 <- "f"
 }
 
-func responseSizeofWeb(url string) {
+func responseSizeofWeb(url string, sizeChan chan int) {
 	fmt.Println("Getting", url)
 	response, err := http.Get(url)
 	if err != nil {
@@ -99,6 +102,7 @@ func responseSizeofWeb(url string) {
 		log.Fatal(err)
 	}
 	fmt.Println(len(body))
+	sizeChan <- len(body)
 }
 
 func a() {
