@@ -49,3 +49,24 @@ func errorString(expected string, result string) string {
 // you can add the -run option to limit the set of tests that are run. Following -run, you specify part or all of a function name, and only test functions whose name matches what you specify will be run.
 // go test ./utils -v -run Elementsf
 //both TestTwoElements and TestThreeElements will be run. (But not TestOneElement, because it doesn’t have an s at the end of its name.f
+
+type testData struct {
+	list []string
+	want string
+}
+
+func TestJoinWithCommas(t *testing.T) {
+
+	tests := []testData{
+		testData{list: []string{"apple", "orange"}, want: "apple and orange"},
+		testData{list: []string{"apple", "orange", "bananas"}, want: "apple, orange, and bananas"},
+		testData{list: []string{"apple"}, want: "apple"},
+	}
+
+	for _, test := range tests {
+		got := JoinWihtCommas(test.list)
+		if got != test.want {
+			t.Errorf("JoinWihtCommas(%#v) %s", test.list, errorString(test.want, got))
+		}
+	}
+}
