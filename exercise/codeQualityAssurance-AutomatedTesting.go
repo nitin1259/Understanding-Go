@@ -2,21 +2,14 @@ package main
 
 import (
 	"fmt"
-	"strings"
+
+	"github.com/nitin1259/Understanding-Go/utils"
 )
 
 func main() {
 	fmt.Println("code quality assurance: Automated Testing")
 
-	res:= joinWihtCommas([]string{"apple", "orange", "pears", "banana"})
+	res:= utils.JoinWihtCommas([]string{"apple", "orange", "pears", "banana"})
 	fmt.Println(res)
 
-}
-
-
-func joinWihtCommas(phrases []string) string{
-	result:= strings.Join(phrases[:len(phrases)-1], ", ")
-	result += " and "
-	result += phrases[len(phrases)-1]
-	return result;
 }
