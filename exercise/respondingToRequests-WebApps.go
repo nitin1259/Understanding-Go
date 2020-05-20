@@ -8,9 +8,22 @@ import (
 
 func main() {
 	fmt.Println("responding to requests: Web Apps")
-	http.HandleFunc("/hello", viewHandler)
-	err := http.ListenAndServe("localhost:8080", nil)
-	log.Fatal(err)
+	// http.HandleFunc("/hello", viewHandler)
+	// err := http.ListenAndServe("localhost:8080", nil)
+	// log.Fatal(err)
+
+	// first clas function example
+	var myfunction func()
+	myfunction = sayHi
+	myfunction()
+
+	// passing function to other function
+	twice(sayHi)
+	twice(sayBye)
+}
+
+func twice(myfunction func()) {
+	myfunction()
 }
 
 func viewHandler(writer http.ResponseWriter, request *http.Request) {
@@ -25,4 +38,7 @@ func viewHandler(writer http.ResponseWriter, request *http.Request) {
 
 func sayHi() {
 	fmt.Println("say hi from first class function")
+}
+func sayBye() {
+	fmt.Println("Bye from first class function")
 }
