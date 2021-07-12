@@ -9,6 +9,7 @@ func FindMax(weight, value [4]int, capacity int, n int, t [][]int) int {
 		return 0
 	}
 
+	// checking with memoization, if it resolved earlier
 	if t[n-1][capacity-1] != -1 {
 		return t[n-1][capacity-1]
 	}

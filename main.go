@@ -14,11 +14,13 @@ func main() {
 
 	capacity := 7
 
+	// create 2d slice
 	t := make([][]int, len(weights))
 	for i := range t {
 		t[i] = make([]int, capacity)
 	}
 
+	// initializing the memoization matrix with -1
 	for i, tt := range t {
 		for j, _ := range tt {
 			t[i][j] = -1
